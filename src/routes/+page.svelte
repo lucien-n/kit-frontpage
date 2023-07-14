@@ -5,7 +5,7 @@
 <div class="container h-full mx-auto flex justify-center items-center">
 	<div class="space-y-5 w-full">
 		<h1 class="h1 text-center">Projects</h1>
-		<div class="card p-3 w-1/2 md:w-1/3 mx-auto h-fit">
+		<div class="card p-3 w-full md:w-1/3 mx-auto h-fit">
 			<LinkGroup let:L>
 				<L.Link project="leptitcoin" stack="sveltekit" status="wip" other="supabase">
 					<L.Text>LePtitCoin</L.Text>

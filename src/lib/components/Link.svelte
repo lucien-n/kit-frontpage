@@ -11,7 +11,7 @@
 	<a
 		href="https://{project}.lucienn.dev"
 		target="_blank"
-		class="flex gap-1 items-center group justify-between"
+		class="flex w-full gap-1 items-center group justify-between"
 	>
 		<span class="flex items-center gap-1">
 			<LinkIcon
