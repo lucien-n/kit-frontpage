@@ -7,7 +7,7 @@
 	class="container relative h-full mx-auto flex flex-col justify-center space-y-5 w-full items-center"
 >
 	<h1 class="h1 mt-0 mb-4">Projects</h1>
-	<div class="card p-3 w-1/2 md:w-1/3 mx-auto h-fit">
+	<div class="card p-3 w-full lg:w-1/2 xl:w-1/3 mx-auto h-fit">
 		<Accordion autocollapse>
 			<AccordionItem open>
 				<svelte:fragment slot="lead"><p class="text-lg">LePtitCoin</p></svelte:fragment>
