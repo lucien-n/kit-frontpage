@@ -1,25 +1,116 @@
 <script>
-	import LinkGroup from '$comp/LinkGroup.svelte';
+	import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
+	import githubSvg from '$lib/svgs/github.svg?raw';
 </script>
 
-<div class="container h-full mx-auto flex justify-center items-center">
-	<div class="space-y-5 w-full">
-		<h1 class="h1 text-center">Projects</h1>
-		<div class="card p-3 w-full md:w-1/3 mx-auto h-fit">
-			<LinkGroup let:L>
-				<L.Link project="leptitcoin" stack="sveltekit" status="wip" other="supabase">
-					<L.Text>LePtitCoin</L.Text>
-					<L.Desc>Listing Website</L.Desc>
-				</L.Link>
-				<L.Link project="seton" stack="sveltekit" status="finished" other="firebase">
-					<L.Text>Seton</L.Text>
-					<L.Desc>Notes app</L.Desc>
-				</L.Link>
-				<L.Link project="calendar" stack="sveltekit" status="wip">
-					<L.Text>Calendar</L.Text>
-					<L.Desc>Calendar app</L.Desc>
-				</L.Link>
-			</LinkGroup>
-		</div>
+<div
+	class="container relative h-full mx-auto flex flex-col justify-center space-y-5 w-full items-center"
+>
+	<h1 class="h1 mt-0 mb-4">Projects</h1>
+	<div class="card p-3 w-full lg:w-1/2 xl:w-1/3 mx-auto h-fit">
+		<Accordion autocollapse>
+			<AccordionItem open>
+				<svelte:fragment slot="lead"><p class="text-lg">LePtitCoin</p></svelte:fragment>
+				<svelte:fragment slot="summary"><p class="opacity-80">Listing website</p></svelte:fragment>
+				<svelte:fragment slot="content">
+					<section id="leptitcoin-desc" class="flex gap-2 flex-col">
+						<p>
+							<b>LePtitCoin</b> is a listing website with the idea of recreating something like
+							LeBonCoin in <u>SvelteKit</u>. <br />
+							<u>Supabase</u> allows for quick and easy auth and database.
+						</p>
+						<section id="leptitcoin-links" class="flex gap-2">
+							<a
+								href="https://leptitcoin.lucienn.dev"
+								class="btn variant-glass-primary hover:underline w-full">Go To</a
+							>
+							<a
+								href="https://github.com/lucien-neuhoff/skit-leptitcoin"
+								class="btn variant-glass hover:variant-ghost hover:underline p-3 aspect-square"
+							>
+								{@html githubSvg}
+							</a>
+						</section>
+					</section>
+					<section id="leptitcoin-badges">
+						<div class="badge variant-glass-warning">SvelteKit</div>
+						<div class="badge variant-glass-success">Supabase</div>
+						<div class="badge variant-glass-tertiary">SkeletonUI</div>
+						<div class="badge variant-glass-secondary">WIP</div>
+					</section>
+				</svelte:fragment>
+			</AccordionItem>
+			<AccordionItem>
+				<svelte:fragment slot="lead"><p class="text-lg">Seton</p></svelte:fragment>
+				<svelte:fragment slot="summary"><p class="opacity-80">Notes website</p></svelte:fragment>
+				<svelte:fragment slot="content">
+					<section id="seton-desc" class="flex gap-2 flex-col">
+						<p>
+							<b>Seton</b> was built as a testing ground for <u>SkeletonUI</u> in
+							<u>SvelteKit</u>. <br />
+							It's an app that lets you create notes, add tags and edit them either logged in or not.
+							<br />
+							<u>Firebase</u> was used for the auth and database.
+						</p>
+						<section id="seton-links" class="flex gap-2">
+							<a
+								href="https://seton.lucienn.dev"
+								class="btn variant-glass-primary hover:underline w-full">Go To</a
+							>
+							<a
+								href="https://github.com/lucien-neuhoff/sveltekit-notes"
+								class="btn variant-glass hover:variant-ghost hover:underline p-3 aspect-square"
+							>
+								{@html githubSvg}
+							</a>
+						</section>
+					</section>
+					<section id="seton-badges">
+						<div class="badge variant-glass-warning">SvelteKit</div>
+						<div class="badge variant-glass-success">Firebase</div>
+						<div class="badge variant-glass-tertiary">SkeletonUI</div>
+						<div class="badge variant-glass-secondary">Working</div>
+					</section>
+				</svelte:fragment>
+			</AccordionItem>
+			<AccordionItem>
+				<svelte:fragment slot="lead"><p class="text-lg">Calendar</p></svelte:fragment>
+				<svelte:fragment slot="summary"><p class="opacity-80">Calendar website</p></svelte:fragment>
+				<svelte:fragment slot="content">
+					<section id="calendar-desc" class="flex gap-2 flex-col">
+						<p>
+							<b>Calendar</b> is on hold until <b>LePtitCoin</b> has an MVP out. <br />
+							The goal of calendar would be to create an interactive calendar. <br />
+							It was first supposed to be used to plan out events for a shared garden.
+							<code class="code"
+								>It's just a plain calendar, it'll be remade with <u>SkeletonUI</u></code
+							>
+						</p>
+						<section id="calendar-links" class="flex gap-2">
+							<a
+								href="https://calendar.lucienn.dev"
+								class="btn variant-glass-primary hover:underline w-full">Go To</a
+							>
+							<a
+								href="https://github.com/lucien-neuhoff/sveltekit-calendar"
+								class="btn variant-glass hover:variant-ghost hover:underline p-3 aspect-square"
+							>
+								{@html githubSvg}
+							</a>
+						</section>
+					</section>
+					<section id="calendar-badges">
+						<div class="badge variant-glass-warning">SvelteKit</div>
+						<div class="badge variant-glass-secondary">WIP</div>
+					</section>
+				</svelte:fragment>
+			</AccordionItem>
+		</Accordion>
 	</div>
+	<p class="italic">
+		There is a pletora of all sorts of projects on <a
+			class="hover:underline"
+			href="https://github.com/lucien-neuhoff">my github</a
+		>
+	</p>
 </div>
