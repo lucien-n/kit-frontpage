@@ -10,4 +10,11 @@ export const load: PageServerLoad = async ({ getClientAddress, locals: { supabas
 	} catch (e) {
 		console.warn(e);
 	}
+
+	try {
+		const { error: err } = await supabase.rpc('increment_view_count', { client_ip: ip });
+		if (err) throw error(500, err);
+	} catch (e) {
+		console.warn(e);
+	}
 };
