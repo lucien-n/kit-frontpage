@@ -8,6 +8,19 @@
 	$: ({ view_count } = data);
 </script>
 
+<svelte:head>
+	<meta
+		name="keyword"
+		content="lucien, neuhoff, lucien neuhoff, web development, html, css, javascript, typescript, tailwind, nodejs, go, python, supabase, firebase, svelte, sveltekit"
+	/>
+	<meta
+		name="description"
+		content="EN I'm Lucien Neuhoff, a 17yo fullstack webdevelopper. Programming has been my passion for many years."
+	/>
+	<meta name="author" content="Lucien Neuhoff" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</svelte:head>
+
 <div
 	class="container relative h-full mx-auto flex flex-col justify-center space-y-5 w-full items-center"
 >
