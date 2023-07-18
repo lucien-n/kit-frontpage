@@ -1,12 +1,18 @@
-<script>
+<script lang="ts">
 	import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
 	import githubSvg from '$lib/svgs/github.svg?raw';
+
+	export let data: { view_count: number };
+
+	let { view_count } = data;
+	$: ({ view_count } = data);
 </script>
 
 <div
 	class="container relative h-full mx-auto flex flex-col justify-center space-y-5 w-full items-center"
 >
-	<h1 class="h1 mt-0 mb-4">Projects</h1>
+	<h1 class="h1 mt-0">Projects</h1>
+	<p class="font-normal mt-0 mb-4">{view_count} views</p>
 	<div class="card p-3 w-full lg:w-1/2 xl:w-1/3 mx-auto h-fit">
 		<Accordion autocollapse>
 			<AccordionItem open>
