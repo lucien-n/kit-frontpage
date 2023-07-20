@@ -16,6 +16,7 @@
 		type ModalComponent
 	} from '@skeletonlabs/skeleton';
 	import IpInfoModal from '$comp/IpInfoModal.svelte';
+	import { formatDate } from '$lib/helper';
 
 	export let data: { supa_views: SupaView[] };
 
@@ -24,7 +25,7 @@
 
 	$: filtered_views = supa_views;
 
-	let columns: Search['by'][] = ['id', 'ip', 'count', 'ignore'];
+	let columns: Search['by'][] = ['id', 'ip', 'count', 'ignore', 'last_viewed'];
 
 	const search: Writable<Search> = writable({ by: 'id', direction: 'asc' });
 
@@ -45,6 +46,10 @@
 		else if (params.by === 'ignore')
 			views = supa_views.sort((a, b) => {
 				return a.ignore ? 1 : -1;
+			});
+		else if (params.by === 'last_viewed')
+			views = supa_views.sort((a, b) => {
+				return a.created_at > b.created_at ? 1 : -1;
 			});
 
 		return $search.direction === 'asc' ? views : views.reverse();
@@ -89,7 +94,7 @@
 </script>
 
 <section id="admin-panel" class="w-full h-full flex items-center justify-center overflow-scroll">
-	<div class="card mt-10 h-[90%] w-[98%] xl:w-1/2 overflow-y-auto hide-scrollbar">
+	<div class="card mt-10 h-[90%] w-[98%] xl:w-[80%] overflow-y-auto hide-scrollbar">
 		{#await filtered_views}
 			<p>loading views</p>
 		{:then views}
@@ -121,9 +126,6 @@
 								>{view.ip}</a
 							>
 							<span class="flex gap-3">
-								<!-- {#await getViewFlag(view.ip) then src}
-									<img {src} alt="flag" />
-								{/await} -->
 								<button on:click={() => openModal(view.ip)}>
 									{@html InfoSvg}
 								</button>
@@ -136,7 +138,14 @@
 							</span>
 						</td>
 						<td class="border border-1 border-surface-600 p-1">{view.count}</td>
-						<td class="border border-1 border-surface-600 p-1">{view.ignore}</td>
+						<td
+							class="border border-1 border-surface-600 p-1 {view.ignore
+								? 'text-green-500'
+								: ' text-red-500'}">{view.ignore}</td
+						>
+						<td class="border border-1 border-surface-600 p-1"
+							>{formatDate(view.last_viewed.getTime())}</td
+						>
 					</tr>
 				{/each}
 			</table>

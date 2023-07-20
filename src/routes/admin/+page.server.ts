@@ -14,7 +14,9 @@ export const load = async ({ locals: { getSession, supabase } }) => {
 			views.forEach((view_data) => {
 				const supa_view: SupaView = {
 					id: view_data.id,
+					uid: view_data.uid,
 					created_at: new Date(view_data.created_at),
+					last_viewed: new Date(view_data.last_viewed || view_data.created_at),
 					ip: view_data.ip,
 					count: view_data.count,
 					info: view_data.info,
