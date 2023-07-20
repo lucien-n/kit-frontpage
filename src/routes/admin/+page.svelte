@@ -2,10 +2,20 @@
 	import type { Search } from '$lib/types/search';
 	import type { SupaView } from '$lib/types/supa_view';
 	import { writable, type Writable } from 'svelte/store';
+	import { browser } from '$app/environment';
 
 	import ChevronUpSvg from '$lib/svgs/chevron_up.svg?raw';
 	import ChevronDownSvg from '$lib/svgs/chevron_down.svg?raw';
 	import UnlockSvg from '$lib/svgs/unlock.svg?raw';
+	import InfoSvg from '$lib/svgs/info.svg?raw';
+	import {
+		popup,
+		type ModalSettings,
+		type PopupSettings,
+		modalStore,
+		type ModalComponent
+	} from '@skeletonlabs/skeleton';
+	import IpInfoModal from '$comp/IpInfoModal.svelte';
 
 	export let data: { supa_views: SupaView[] };
 
@@ -45,20 +55,34 @@
 		$search.direction = $search.direction === 'asc' ? 'desc' : 'asc';
 	}
 
-	async function getViewFlag(ip: string): Promise<string> {
-		const resp = await fetch(`https://api.ip2flag.com/${ip}`, {
+	async function getViewIpInfo(ip: string): Promise<object> {
+		const resp = await fetch(`http://ip-api.com/json/${ip}?fields=22282239`, {
 			method: 'GET',
 			mode: 'cors',
 			credentials: 'same-origin',
 			headers: {
-				'Content-Type': 'application/json',
-				Origin: 'localhost'
+				'Content-Type': 'application/json'
 			}
 		});
-		const flag = await resp.json();
-		if (!flag) return 'err';
+		const data = await resp.json();
+		if (!data) return { message: 'error' };
 
-		return flag.flag;
+		return data;
+	}
+
+	async function openModal(ip: string) {
+		const ip_info = await getViewIpInfo(ip);
+
+		const modalComponent: ModalComponent = {
+			ref: IpInfoModal,
+			props: { ip, ip_info }
+		};
+
+		const settings: ModalSettings = {
+			type: 'component',
+			component: modalComponent
+		};
+		modalStore.trigger(settings);
 	}
 
 	search.subscribe(({ by, direction }) => (filtered_views = filterViews({ by, direction })));
@@ -97,9 +121,13 @@
 								>{view.ip}</a
 							>
 							<span class="flex gap-3">
-								{#await getViewFlag(view.ip) then src}
+								<!-- {#await getViewFlag(view.ip) then src}
 									<img {src} alt="flag" />
-								{/await}
+								{/await} -->
+								<button on:click={() => openModal(view.ip)}>
+									{@html InfoSvg}
+								</button>
+
 								<a
 									href="https://www.yougetsignal.com/tools/open-ports/?remoteAddress={view.ip}"
 									class="flex self-center"

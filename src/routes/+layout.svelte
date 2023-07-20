@@ -7,6 +7,7 @@
 	import { invalidate } from '$app/navigation';
 	import { onMount } from 'svelte';
 	import type { Session, SupabaseClient } from '@supabase/supabase-js';
+	import { Modal } from '@skeletonlabs/skeleton';
 
 	export let data: { supabase: SupabaseClient; session: Session };
 
@@ -29,6 +30,8 @@
 <svelte:head>
 	<title>Lucien Neuhoff</title>
 </svelte:head>
+
+<Modal />
 
 <main class="overflow-hidden w-full h-full">
 	<slot />
