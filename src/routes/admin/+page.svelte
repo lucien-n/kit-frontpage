@@ -8,7 +8,12 @@
 	import ChevronUpSvg from '$lib/svgs/chevron_up.svg?raw';
 	import InfoSvg from '$lib/svgs/info.svg?raw';
 	import UnlockSvg from '$lib/svgs/unlock.svg?raw';
-	import { modalStore, type ModalComponent, type ModalSettings } from '@skeletonlabs/skeleton';
+	import {
+		modalStore,
+		type ModalComponent,
+		type ModalSettings,
+		filter
+	} from '@skeletonlabs/skeleton';
 
 	export let data: { supa_views: SupaView[] };
 
@@ -16,6 +21,7 @@
 	$: ({ supa_views } = data);
 
 	$: filtered_views = supa_views;
+	$: last_viewed_info = supa_views[0];
 
 	let columns: Search['by'][] = ['id', 'ip', 'count', 'ignore', 'last_viewed'];
 
@@ -68,6 +74,8 @@
 	}
 
 	async function openModal(ip: string) {
+		last_viewed_info = supa_views.filter((view) => view.ip === ip)[0];
+
 		const ip_info = await getViewIpInfo(ip);
 
 		const modalComponent: ModalComponent = {
@@ -82,64 +90,102 @@
 		modalStore.trigger(settings);
 	}
 
+	function getCount(views_to_count: SupaView[]): number {
+		let total = 0;
+
+		views_to_count.forEach(({ count }) => (total += count || 0));
+
+		return total;
+	}
+
 	search.subscribe(({ by, direction }) => (filtered_views = filterViews({ by, direction })));
 </script>
 
-<section id="admin-panel" class="w-full h-full flex items-center justify-center overflow-scroll">
-	<div class="card mt-10 h-[90%] w-[98%] xl:w-[80%] overflow-y-auto hide-scrollbar">
-		{#await filtered_views}
-			<p>loading views</p>
-		{:then views}
+<section id="admin-panel" class=" w-full h-full flex flex-col items-center justify-center">
+	<div class="w-full my-2">
+		<button
+			on:click={() => openModal(last_viewed_info.ip)}
+			class="btn variant-filled-surface flex mx-auto">See last selected</button
+		>
+	</div>
+	<div
+		class="card h-[90%] w-[98%] xl:w-[80%] overflow-y-auto hide-scrollbar border border-surface-600"
+	>
+		{#await filtered_views then views}
 			<table class="w-full overflow-y-auto border-collapse">
-				<tr class="w-full">
-					{#each columns as col}
-						<th class="border border-1 border-surface-700 p-1">
-							<span class="flex hover:underline">
-								<button
-									class="hover:underline flex self-center justify-between w-full"
-									on:click={() => searchBy(col)}
+				<thead class="sticky top-0 bg-surface-900">
+					<tr>
+						{#each columns as col}
+							<th class="p-3">
+								<span class="flex hover:underline">
+									<button
+										class="hover:underline flex self-center justify-between w-full"
+										on:click={() => searchBy(col)}
+									>
+										{col}
+										{#if $search.direction === 'asc'}
+											{@html ChevronUpSvg}
+										{:else}
+											{@html ChevronDownSvg}
+										{/if}
+									</button>
+								</span>
+							</th>
+						{/each}
+					</tr>
+				</thead>
+				<tbody>
+					{#each views as view}
+						<tr class="w-full even:bg-surface-700 focus:border border-1 border-primary-500">
+							<td class="border border-1 border-surface-600 p-1">{view.id}</td>
+							<td class="border border-1 border-surface-600 p-1 flex justify-between flex-wrap">
+								<a href="http://{view.ip}" class="hover:underline" style="font-weight: 500;"
+									>{view.ip}</a
 								>
-									{col}
-									{#if $search.direction === 'asc'}
-										{@html ChevronUpSvg}
-									{:else}
-										{@html ChevronDownSvg}
-									{/if}
-								</button>
-							</span>
-						</th>
-					{/each}
-				</tr>
-				{#each views as view}
-					<tr class="w-full even:bg-surface-700">
-						<td class="border border-1 border-surface-600 p-1">{view.id}</td>
-						<td class="border border-1 border-surface-600 p-1 flex justify-between">
-							<a href="http://{view.ip}" class="hover:underline" style="font-weight: 500;"
-								>{view.ip}</a
-							>
-							<span class="flex gap-3">
-								<button on:click={() => openModal(view.ip)}>
-									{@html InfoSvg}
-								</button>
+								<span class="flex gap-3">
+									<button on:click={() => openModal(view.ip)}>
+										{@html InfoSvg}
+									</button>
 
-								<a
-									href="https://www.yougetsignal.com/tools/open-ports/?remoteAddress={view.ip}"
-									class="flex self-center"
-									target="_blank">{@html UnlockSvg}</a
-								>
+									<a
+										href="https://www.yougetsignal.com/tools/open-ports/?remoteAddress={view.ip}"
+										class="flex self-center"
+										target="_blank">{@html UnlockSvg}</a
+									>
+								</span>
+							</td>
+							<td class="border border-1 border-surface-600 p-1">{view.count}</td>
+							<td
+								class="border border-1 border-surface-600 p-1 {view.ignore
+									? 'text-green-500'
+									: ' text-red-500'}">{view.ignore}</td
+							>
+							<td class="border border-1 border-surface-600 p-1"
+								>{formatDate(view.last_viewed || 0)}</td
+							>
+						</tr>
+					{/each}
+				</tbody>
+				<tfoot class="sticky bottom-0 bg-surface-900">
+					<tr>
+						<td class="p-3" colspan="100">
+							<span class="flex justify-between">
+								<p>
+									{filtered_views.length} entries
+								</p>
+								<p>
+									{filtered_views.filter((view) => !view.ignore).length} non-ignored entries
+								</p>
+								<p>
+									{getCount(filtered_views)} views total
+								</p>
+								<p>
+									{getCount(filtered_views.filter((view) => !view.ignore))} non-ignored views
+								</p>
 							</span>
 						</td>
-						<td class="border border-1 border-surface-600 p-1">{view.count}</td>
-						<td
-							class="border border-1 border-surface-600 p-1 {view.ignore
-								? 'text-green-500'
-								: ' text-red-500'}">{view.ignore}</td
-						>
-						<td class="border border-1 border-surface-600 p-1"
-							>{formatDate(view.last_viewed || 0)}</td
-						>
 					</tr>
-				{/each}
+				</tfoot>
 			</table>
 		{/await}
 	</div>
