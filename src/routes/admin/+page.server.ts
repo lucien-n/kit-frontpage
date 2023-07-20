@@ -1,4 +1,4 @@
-import type { SupaView } from '$lib/supa_view';
+import type { SupaView } from '$lib/types/supa_view';
 import { error } from '@sveltejs/kit';
 
 export const load = async ({ locals: { getSession, supabase } }) => {
@@ -32,6 +32,6 @@ export const load = async ({ locals: { getSession, supabase } }) => {
 	};
 
 	return {
-		views: await getSupaViews()
+		supa_views: await getSupaViews()
 	};
 };
