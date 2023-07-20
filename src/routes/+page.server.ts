@@ -3,8 +3,8 @@ export const load = async ({ getClientAddress, locals: { supabase } }) => {
 	const ip = getClientAddress();
 
 	try {
-		const { body } = await supabase.from('views').insert({ ip: ip });
-		console.log(body);
+		const resp = await supabase.from('views').insert({ ip: ip });
+		console.log(resp);
 	} catch (e) {
 		console.warn(e);
 	}
