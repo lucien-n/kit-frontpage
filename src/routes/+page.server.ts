@@ -19,7 +19,7 @@ export const load = async ({ getClientAddress, locals: { supabase } }) => {
 	let view_count = 0;
 	try {
 		const { data: count } = await supabase.rpc('total_views');
-		view_count = count;
+		view_count = count || -1;
 	} catch (e) {
 		console.warn(e);
 	}

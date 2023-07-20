@@ -1,4 +1,3 @@
-import type { SupaView } from '$lib/types/supa_view';
 import { error } from '@sveltejs/kit';
 
 export const load = async ({ locals: { getSession, supabase } }) => {
@@ -15,12 +14,12 @@ export const load = async ({ locals: { getSession, supabase } }) => {
 				const supa_view: SupaView = {
 					id: view_data.id,
 					uid: view_data.uid,
-					created_at: new Date(view_data.created_at),
-					last_viewed: new Date(view_data.last_viewed || view_data.created_at),
+					created_at: new Date(view_data.created_at || 0).toString(),
+					last_viewed: new Date(view_data.last_viewed || view_data.created_at || 0).toString(),
 					ip: view_data.ip,
-					count: view_data.count,
+					count: view_data.count || -1,
 					info: view_data.info,
-					ignore: view_data.ignore
+					ignore: view_data.ignore || false
 				};
 				supa_views.push(supa_view);
 			});

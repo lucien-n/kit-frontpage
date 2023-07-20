@@ -1,22 +1,14 @@
 <script lang="ts">
 	import type { Search } from '$lib/types/search';
-	import type { SupaView } from '$lib/types/supa_view';
 	import { writable, type Writable } from 'svelte/store';
-	import { browser } from '$app/environment';
 
-	import ChevronUpSvg from '$lib/svgs/chevron_up.svg?raw';
-	import ChevronDownSvg from '$lib/svgs/chevron_down.svg?raw';
-	import UnlockSvg from '$lib/svgs/unlock.svg?raw';
-	import InfoSvg from '$lib/svgs/info.svg?raw';
-	import {
-		popup,
-		type ModalSettings,
-		type PopupSettings,
-		modalStore,
-		type ModalComponent
-	} from '@skeletonlabs/skeleton';
 	import IpInfoModal from '$comp/IpInfoModal.svelte';
 	import { formatDate } from '$lib/helper';
+	import ChevronDownSvg from '$lib/svgs/chevron_down.svg?raw';
+	import ChevronUpSvg from '$lib/svgs/chevron_up.svg?raw';
+	import InfoSvg from '$lib/svgs/info.svg?raw';
+	import UnlockSvg from '$lib/svgs/unlock.svg?raw';
+	import { modalStore, type ModalComponent, type ModalSettings } from '@skeletonlabs/skeleton';
 
 	export let data: { supa_views: SupaView[] };
 
@@ -41,7 +33,7 @@
 			});
 		else if (params.by === 'count')
 			views = supa_views.sort((a, b) => {
-				return a.count > b.count ? 1 : -1;
+				return (a.count || 1) > (b.count || 0) ? 1 : -1;
 			});
 		else if (params.by === 'ignore')
 			views = supa_views.sort((a, b) => {
@@ -49,7 +41,7 @@
 			});
 		else if (params.by === 'last_viewed')
 			views = supa_views.sort((a, b) => {
-				return a.created_at > b.created_at ? 1 : -1;
+				return new Date(a.created_at || 0) > new Date(b.created_at || 0) ? 1 : -1;
 			});
 
 		return $search.direction === 'asc' ? views : views.reverse();
@@ -144,7 +136,7 @@
 								: ' text-red-500'}">{view.ignore}</td
 						>
 						<td class="border border-1 border-surface-600 p-1"
-							>{formatDate(view.last_viewed.getTime())}</td
+							>{formatDate(view.last_viewed || 0)}</td
 						>
 					</tr>
 				{/each}
