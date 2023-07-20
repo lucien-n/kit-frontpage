@@ -1,6 +1,10 @@
 <script lang="ts">
 	import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
 	import githubSvg from '$lib/svgs/github.svg?raw';
+	import SveltekitLink from '$comp/links/SveltekitLink.svelte';
+	import SupabaseLink from '$comp/links/SupabaseLink.svelte';
+	import SkeletonLink from '$comp/links/SkeletonLink.svelte';
+	import FirebaseLink from '$comp/links/FirebaseLink.svelte';
 
 	export let data: { view_count: number };
 
@@ -35,8 +39,8 @@
 					<section id="leptitcoin-desc" class="flex gap-2 flex-col">
 						<p>
 							<b>LePtitCoin</b> is a listing website with the idea of recreating something like
-							LeBonCoin in <u>SvelteKit</u>. <br />
-							<u>Supabase</u> allows for quick and easy auth and database.
+							LeBonCoin in <u><SveltekitLink /></u>. <br />
+							<u><SupabaseLink /></u> allows for quick and easy auth and database.
 						</p>
 						<section id="leptitcoin-links" class="flex gap-2">
 							<a
@@ -52,9 +56,9 @@
 						</section>
 					</section>
 					<section id="leptitcoin-badges">
-						<div class="badge variant-glass-warning">SvelteKit</div>
-						<div class="badge variant-glass-success">Supabase</div>
-						<div class="badge variant-glass-tertiary">SkeletonUI</div>
+						<div class="badge variant-glass-warning"><SveltekitLink /></div>
+						<div class="badge variant-glass-success"><SupabaseLink /></div>
+						<div class="badge variant-glass-tertiary"><SkeletonLink /></div>
 						<div class="badge variant-glass-secondary">WIP</div>
 					</section>
 				</svelte:fragment>
@@ -65,11 +69,11 @@
 				<svelte:fragment slot="content">
 					<section id="seton-desc" class="flex gap-2 flex-col">
 						<p>
-							<b>Seton</b> was built as a testing ground for <u>SkeletonUI</u> in
-							<u>SvelteKit</u>. <br />
+							<b>Seton</b> was built as a testing ground for <u><SkeletonLink /></u> in
+							<u><SveltekitLink /></u>. <br />
 							It's an app that lets you create notes, add tags and edit them either logged in or not.
 							<br />
-							<u>Firebase</u> was used for the auth and database.
+							<u><FirebaseLink /></u> was used for the auth and database.
 						</p>
 						<section id="seton-links" class="flex gap-2">
 							<a
@@ -85,9 +89,9 @@
 						</section>
 					</section>
 					<section id="seton-badges">
-						<div class="badge variant-glass-warning">SvelteKit</div>
-						<div class="badge variant-glass-success">Firebase</div>
-						<div class="badge variant-glass-tertiary">SkeletonUI</div>
+						<div class="badge variant-glass-warning"><SveltekitLink /></div>
+						<div class="badge variant-glass-success"><FirebaseLink /></div>
+						<div class="badge variant-glass-tertiary"><SkeletonLink /></div>
 						<div class="badge variant-glass-secondary">Working</div>
 					</section>
 				</svelte:fragment>
@@ -101,8 +105,9 @@
 							<b>Calendar</b> is on hold until <b>LePtitCoin</b> has an MVP out. <br />
 							The goal of calendar would be to create an interactive calendar. <br />
 							It was first supposed to be used to plan out events for a shared garden.
-							<code class="code"
-								>It's just a plain calendar, it'll be remade with <u>SkeletonUI</u></code
+							<br />
+							<span class="font-mono"
+								>It's just a plain calendar, it'll be remade with <u><SkeletonLink /></u></span
 							>
 						</p>
 						<section id="calendar-links" class="flex gap-2">
@@ -119,7 +124,7 @@
 						</section>
 					</section>
 					<section id="calendar-badges">
-						<div class="badge variant-glass-warning">SvelteKit</div>
+						<div class="badge variant-glass-warning"><SveltekitLink /></div>
 						<div class="badge variant-glass-secondary">WIP</div>
 					</section>
 				</svelte:fragment>
