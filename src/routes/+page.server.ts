@@ -1,12 +1,9 @@
 import { error } from '@sveltejs/kit';
-import type { PageServerLoad } from './$types';
-
-export const load: PageServerLoad = async ({ getClientAddress, locals: { supabase } }) => {
+export const load = async ({ getClientAddress, locals: { supabase } }) => {
 	const ip = getClientAddress();
 
 	try {
-		const { error: err } = await supabase.from('views').insert({ ip: ip });
-		if (err) throw error(500, err);
+		await supabase.from('views').insert({ ip: ip });
 	} catch (e) {
 		console.warn(e);
 	}

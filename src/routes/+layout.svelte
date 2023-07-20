@@ -3,6 +3,27 @@
 	import '@skeletonlabs/skeleton/styles/skeleton.css';
 	import '../app.postcss';
 	import '../dark-theme.postcss';
+
+	import { invalidate } from '$app/navigation';
+	import { onMount } from 'svelte';
+	import type { Session, SupabaseClient } from '@supabase/supabase-js';
+
+	export let data: { supabase: SupabaseClient; session: Session };
+
+	let { supabase, session } = data;
+	$: ({ supabase, session } = data);
+
+	onMount(() => {
+		const {
+			data: { subscription }
+		} = supabase.auth.onAuthStateChange((event, _session) => {
+			if (_session?.expires_at !== session?.expires_at) {
+				invalidate('supabase:auth');
+			}
+		});
+
+		return () => subscription.unsubscribe();
+	});
 </script>
 
 <svelte:head>
