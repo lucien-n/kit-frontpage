@@ -5,11 +5,27 @@
 	import SupabaseLink from '$comp/links/SupabaseLink.svelte';
 	import SkeletonLink from '$comp/links/SkeletonLink.svelte';
 	import FirebaseLink from '$comp/links/FirebaseLink.svelte';
+	import type { RepoInfo } from '$lib/types/repo_info';
+	import { onMount } from 'svelte';
 
 	export let data: { view_count: number };
 
 	let { view_count } = data;
 	$: ({ view_count } = data);
+
+	const getRepoInfo = async (repo: string): Promise<RepoInfo | void> => {
+		try {
+			const resp = await fetch(`/api/repo-info/${repo}`);
+			const data = (await resp.json()) as RepoInfo;
+			console.log(data);
+		} catch (e) {
+			console.warn(e);
+		}
+	};
+
+	onMount(() => {
+		getRepoInfo('skit-leptitcoin');
+	});
 </script>
 
 <svelte:head>
@@ -54,6 +70,11 @@
 								{@html githubSvg}
 							</a>
 						</section>
+						{#await getRepoInfo('kit-frontpage') then repoInfo}
+							<section>
+								{repoInfo.latestCommit}
+							</section>
+						{/await}
 					</section>
 					<section id="leptitcoin-badges">
 						<div class="badge variant-glass-warning"><SveltekitLink /></div>

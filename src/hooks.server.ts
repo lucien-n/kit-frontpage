@@ -1,5 +1,7 @@
+import { env } from '$env/dynamic/private';
 import { createSupabaseServerClient } from '@supabase/auth-helpers-sveltekit';
 import type { Handle } from '@sveltejs/kit';
+import { Octokit } from 'octokit';
 
 export const handle: Handle = async ({ event, resolve }) => {
 	event.locals.supabase = createSupabaseServerClient({
@@ -15,6 +17,8 @@ export const handle: Handle = async ({ event, resolve }) => {
 		} = await event.locals.supabase.auth.getSession();
 		return session;
 	};
+
+	event.locals.octokit = new Octokit({ auth: env.GITHUB_TOKEN });
 
 	return resolve(event, {
 		filterSerializedResponseHeaders(name) {
