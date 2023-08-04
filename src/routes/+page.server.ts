@@ -1,5 +1,5 @@
 import { error } from '@sveltejs/kit';
-export const load = async ({ getClientAddress, locals: { supabase, octokit } }) => {
+export const load = async ({ getClientAddress, locals: { supabase } }) => {
 	const ip = getClientAddress();
 
 	try {

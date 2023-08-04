@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { browser } from '$app/environment';
 	import { formatDate, getRepoInfo } from '$lib/helper';
 	import githubSvg from '$lib/svgs/github.svg?raw';
 	import { fade } from 'svelte/transition';
@@ -24,20 +25,22 @@
 				{@html githubSvg}
 			</a>
 		</section>
-		{#await getRepoInfo(github_project)}
-			<div class="placeholder aninmate-pulse w-44 h-5" />
-		{:then repoInfo}
-			{#if repoInfo}
-				<section in:fade={{ duration: 200 }} class="flex justify-between">
-					<span class="font-mono bg-black bg-opacity-70 px-3 py-1 rounded-md">
-						{repoInfo.latestCommit.message}
-					</span>
-					<span>
-						{formatDate(new Date(repoInfo.latestCommit.date || 0).getTime())}
-					</span>
-				</section>
-			{/if}
-		{/await}
+		{#if browser}
+			{#await getRepoInfo(github_project)}
+				<div class="placeholder aninmate-pulse w-44 h-5" />
+			{:then repoInfo}
+				{#if repoInfo}
+					<section in:fade={{ duration: 200 }} class="flex justify-between">
+						<span class="font-mono bg-black bg-opacity-70 px-3 py-1 rounded-md">
+							{repoInfo.latestCommit.message}
+						</span>
+						<span>
+							{formatDate(new Date(repoInfo.latestCommit.date || 0).getTime())}
+						</span>
+					</section>
+				{/if}
+			{/await}
+		{/if}
 	</section>
 	<section id="leptitcoin-badges">
 		<slot name="links" />

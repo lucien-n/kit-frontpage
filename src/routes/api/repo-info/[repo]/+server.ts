@@ -13,9 +13,9 @@ export const GET: RequestHandler = async ({ locals: { octokit }, params }) => {
 		if (!data) return new Response(null, { status: 500, statusText: 'Internal Server Error' });
 
 		const latestCommit = {
-			message: data.commit.message,
-			author: data.commit.author.name,
-			date: data.commit.author.date
+			message: data.commit.message || 'ref: this is an example commit',
+			author: data.commit.author.name || 'lucien-neuhoff',
+			date: data.commit.author.date || new Date().toUTCString()
 		};
 
 		const info: RepoInfo = {
