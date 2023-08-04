@@ -13,14 +13,17 @@
 	let { view_count } = data;
 	$: ({ view_count } = data);
 
-	const getRepoInfo = async (repo: string): Promise<RepoInfo | void> => {
+	const getRepoInfo = async (repo: string): Promise<RepoInfo | null> => {
 		try {
 			const resp = await fetch(`/api/repo-info/${repo}`);
 			const data = (await resp.json()) as RepoInfo;
-			console.log(data);
+
+			return data;
 		} catch (e) {
 			console.warn(e);
 		}
+
+		return null;
 	};
 
 	onMount(() => {
@@ -71,9 +74,12 @@
 							</a>
 						</section>
 						{#await getRepoInfo('kit-frontpage') then repoInfo}
-							<section>
-								{repoInfo.latestCommit}
-							</section>
+							{#if repoInfo}
+								<section>
+									{repoInfo.latestCommit.message}
+									{repoInfo.latestCommit.date}
+								</section>
+							{/if}
 						{/await}
 					</section>
 					<section id="leptitcoin-badges">
