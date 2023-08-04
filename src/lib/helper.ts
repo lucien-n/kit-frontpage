@@ -1,3 +1,5 @@
+import type { RepoInfo } from '$lib/types/repo_info';
+
 export function formatDate(time: number | string): string {
 	const date = new Date(time);
 
@@ -12,3 +14,16 @@ export function formatDate(time: number | string): string {
 
 	return formatted_date;
 }
+
+export const getRepoInfo = async (repo: string): Promise<RepoInfo | null> => {
+	try {
+		const resp = await fetch(`/api/repo-info/${repo}`);
+		const data = (await resp.json()) as RepoInfo;
+
+		return data;
+	} catch (e) {
+		console.warn(e);
+	}
+
+	return null;
+};
