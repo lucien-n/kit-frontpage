@@ -14,7 +14,7 @@
 
 <svelte:head>
 	<meta
-		name="keyword"
+		name="keywords"
 		content="lucien, neuhoff, lucien neuhoff, web development, html, css, javascript, typescript, tailwind, nodejs, go, python, supabase, firebase, svelte, sveltekit"
 	/>
 	<meta
