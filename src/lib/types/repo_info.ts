@@ -1,5 +1,6 @@
 import type { CommitInfo } from './commit_info';
 
 export type RepoInfo = {
-	latestCommit: CommitInfo;
+	name: string;
+	latest_commit: CommitInfo;
 };

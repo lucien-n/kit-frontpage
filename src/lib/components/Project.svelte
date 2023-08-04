@@ -8,11 +8,18 @@
 	export let github_project: string;
 </script>
 
-<article>
-	<section id="{project_name}-desc" class="flex gap-2 flex-col">
-		<p>
-			<slot name="description" />
-		</p>
+<article class="flex gap-2 flex-col">
+	<div class="flex flex-col gap-2">
+		<div class="flex">
+			<section id="{project_name}-desc" class="flex gap-2 flex-col">
+				<p>
+					<slot name="description" />
+				</p>
+			</section>
+			<section id="leptitcoin-badges" class="flex flex-col gap-1">
+				<slot name="links" />
+			</section>
+		</div>
 		<section id="{project_name}-links" class="flex gap-2">
 			<a
 				href="https://{project_name}.lucienn.dev"
@@ -25,24 +32,21 @@
 				{@html githubSvg}
 			</a>
 		</section>
-		{#if browser}
-			{#await getRepoInfo(github_project)}
-				<div class="placeholder aninmate-pulse w-44 h-5" />
-			{:then repoInfo}
-				{#if repoInfo}
-					<section in:fade={{ duration: 200 }} class="flex justify-between">
-						<span class="font-mono bg-black bg-opacity-70 px-3 py-1 rounded-md">
-							{repoInfo.latestCommit.message}
-						</span>
-						<span>
-							{formatDate(new Date(repoInfo.latestCommit.date || 0).getTime())}
-						</span>
-					</section>
-				{/if}
-			{/await}
-		{/if}
-	</section>
-	<section id="leptitcoin-badges">
-		<slot name="links" />
-	</section>
+	</div>
+	{#if browser}
+		{#await getRepoInfo(github_project)}
+			<div class="placeholder aninmate-pulse w-full h-12" />
+		{:then repoInfo}
+			{#if repoInfo}
+				<section in:fade={{ duration: 200 }} class="flex justify-between gap-x-3 w-full">
+					<span class="font-mono bg-surface-700 px-3 py-1 rounded-md">
+						{repoInfo.latest_commit.message}
+					</span>
+					<span class="text-end">
+						{formatDate(new Date(repoInfo.latest_commit.date || 0).getTime())}
+					</span>
+				</section>
+			{/if}
+		{/await}
+	{/if}
 </article>
