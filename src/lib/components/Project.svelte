@@ -10,9 +10,9 @@
 </script>
 
 <article class="flex gap-2 flex-col">
-	<div class="flex flex-col gap-2">
+	<div class="flex flex-col gap-2 justify-between">
 		<div class="flex">
-			<section id="{project_name}-desc" class="flex gap-2 flex-col">
+			<section id="{project_name}-desc" class="flex gap-2 flex-col w-full">
 				<p>
 					<slot name="description" />
 				</p>
