@@ -14,16 +14,4 @@ export const load = async ({ getClientAddress, locals: { supabase } }) => {
 	} catch (e) {
 		console.warn(e);
 	}
-
-	let view_count = 0;
-	try {
-		const { data: count } = await supabase.rpc('total_views');
-		view_count = count || -1;
-	} catch (e) {
-		console.warn(e);
-	}
-
-	return {
-		view_count: view_count
-	};
 };
