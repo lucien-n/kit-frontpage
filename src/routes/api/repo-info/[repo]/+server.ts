@@ -99,7 +99,7 @@ const getFromSupabase = async (
 		const latest_commit: CommitInfo = {
 			author: repo_data.commit_author,
 			message: repo_data.commit_message,
-			date: repo_data.commit_data
+			date: repo_data.commit_date
 		};
 
 		const repo_info: RepoInfo = {
