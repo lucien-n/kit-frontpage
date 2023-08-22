@@ -40,14 +40,18 @@
 		{:then repoInfo}
 			{#if repoInfo}
 				<section in:fade={{ duration: 200 }} class="flex justify-between gap-x-3 w-full">
-					<span class="font-mono bg-surface-700 px-3 py-1 rounded-md w-full">
-						<span class="font-bold">on <span class="underline">{branch}</span></span>
-						<br />
-						{repoInfo.latest_commit.message}
-					</span>
-					<span class="text-end">
-						{formatDate(new Date(repoInfo.latest_commit.date || 0).getTime())}
-					</span>
+					<div class="font-mono bg-surface-700 px-3 py-1 rounded-md w-full gap-y-3 flex flex-col">
+						<span class="font-bold">{repoInfo.name} on <span class="underline">{branch}</span></span
+						>
+						<p>
+							{repoInfo.latest_commit.message}
+						</p>
+						<span class="italic text-sm flex gap-[0.4em]"
+							>- {repoInfo.latest_commit.author}
+							<span class="text-[0.3em] self-center flex">⚪</span>
+							{formatDate(new Date(repoInfo.latest_commit.date || 0).getTime())}</span
+						>
+					</div>
 				</section>
 			{/if}
 		{/await}
