@@ -6,22 +6,27 @@ import type { Octokit } from 'octokit';
 // 							  h    m    s    ms
 const REPO_FETCH_TIMEOUT_MS = 12 * 60 * 60 * 100;
 
-export const GET: RequestHandler = async ({ locals: { octokit, supabase }, params }) => {
+export const GET: RequestHandler = async ({
+	locals: { octokit, supabase },
+	params,
+	url: { searchParams }
+}) => {
 	try {
-		const repo = params.repo;
+		const repo_name = params.repo;
+		const repo_branch = searchParams.get('branch') || 'main';
 
-		if (!repo) return new Response(null, { status: 422, statusText: 'Missing repo id' });
+		if (!repo_name) return new Response(null, { status: 422, statusText: 'Missing repo id' });
 
 		let info: RepoInfo | null = null;
 
-		const should_refetch = await shouldRefetchRepoInfo(supabase, repo);
+		const should_refetch = await shouldRefetchRepoInfo(supabase, repo_name);
 
 		if (should_refetch) {
-			const github_repo_info = await getFromGithub(octokit, repo);
+			const github_repo_info = await getFromGithub(octokit, repo_name, repo_branch);
 
 			if (!github_repo_info) {
 				info = {
-					name: repo,
+					name: repo_name,
 					latest_commit: {
 						message: 'ref: this is an example commit',
 						author: 'lucien-neuhoff',
@@ -33,7 +38,7 @@ export const GET: RequestHandler = async ({ locals: { octokit, supabase }, param
 				await saveRepoToSupabase(supabase, info);
 			}
 		} else {
-			const supa_repo_info = await getFromSupabase(supabase, repo);
+			const supa_repo_info = await getFromSupabase(supabase, repo_name);
 			if (supa_repo_info) info = supa_repo_info;
 		}
 
@@ -47,9 +52,16 @@ export const GET: RequestHandler = async ({ locals: { octokit, supabase }, param
 	return new Response();
 };
 
-const getFromGithub = async (octokit: Octokit, repo: string): Promise<RepoInfo | null> => {
+const getFromGithub = async (
+	octokit: Octokit,
+	repo_name: string,
+	repo_branch: string
+): Promise<RepoInfo | null> => {
 	try {
-		const resp = await octokit.request(`GET /repos/lucien-neuhoff/${repo}/commits/dev`, {});
+		const resp = await octokit.request(
+			`GET /repos/lucien-neuhoff/${repo_name}/commits/${repo_branch}`,
+			{}
+		);
 		const data = resp.data;
 
 		if (!data) return null;
@@ -61,7 +73,7 @@ const getFromGithub = async (octokit: Octokit, repo: string): Promise<RepoInfo |
 		};
 
 		const info: RepoInfo = {
-			name: repo,
+			name: repo_name,
 			latest_commit
 		};
 

@@ -15,9 +15,9 @@ export function formatDate(time: number | string): string {
 	return formatted_date;
 }
 
-export const getRepoInfo = async (repo: string): Promise<RepoInfo | null> => {
+export const getRepoInfo = async (repo: string, branch: string): Promise<RepoInfo | null> => {
 	try {
-		const resp = await fetch(`/api/repo-info/${repo}`);
+		const resp = await fetch(`/api/repo-info/${repo}?branch=${branch}`);
 		const data = (await resp.json()) as RepoInfo;
 
 		return data;

@@ -42,7 +42,7 @@
 				<svelte:fragment slot="lead"><p class="text-lg">LePtitCoin</p></svelte:fragment>
 				<svelte:fragment slot="summary"><p class="opacity-80">Listing website</p></svelte:fragment>
 				<svelte:fragment slot="content">
-					<Project project_name="leptitcoin" github_project="skit-leptitcoin">
+					<Project project_name="leptitcoin" github_project="skit-leptitcoin" branch="dev-supabase">
 						<svelte:fragment slot="description">
 							<b>LePtitCoin</b> is a listing website with the idea of recreating something like
 							LeBonCoin in <u><SveltekitLink /></u>. <br />
@@ -61,7 +61,7 @@
 				<svelte:fragment slot="lead"><p class="text-lg">Seton</p></svelte:fragment>
 				<svelte:fragment slot="summary"><p class="opacity-80">Notes website</p></svelte:fragment>
 				<svelte:fragment slot="content">
-					<Project project_name="seton" github_project="sveltekit-notes">
+					<Project project_name="seton" github_project="sveltekit-notes" branch="dev">
 						<svelte:fragment slot="description">
 							<b>Seton</b> was built as a testing ground for <u><SkeletonLink /></u> in
 							<u><SveltekitLink /></u>. <br />
@@ -82,7 +82,7 @@
 				<svelte:fragment slot="lead"><p class="text-lg">Calendar</p></svelte:fragment>
 				<svelte:fragment slot="summary"><p class="opacity-80">Calendar website</p></svelte:fragment>
 				<svelte:fragment slot="content">
-					<Project project_name="calendar" github_project="sveltekit-calendar">
+					<Project project_name="calendar" github_project="sveltekit-calendar" branch="main">
 						<svelte:fragment slot="description">
 							<b>Calendar</b> is on hold until <b>LePtitCoin</b> has an MVP out. <br />
 							The goal of calendar would be to create an interactive calendar. <br />

@@ -6,6 +6,7 @@
 
 	export let project_name: string;
 	export let github_project: string;
+	export let branch: string;
 </script>
 
 <article class="flex gap-2 flex-col">
@@ -34,12 +35,14 @@
 		</section>
 	</div>
 	{#if browser}
-		{#await getRepoInfo(github_project)}
+		{#await getRepoInfo(github_project, branch)}
 			<div class="placeholder aninmate-pulse w-full h-12" />
 		{:then repoInfo}
 			{#if repoInfo}
 				<section in:fade={{ duration: 200 }} class="flex justify-between gap-x-3 w-full">
-					<span class="font-mono bg-surface-700 px-3 py-1 rounded-md">
+					<span class="font-mono bg-surface-700 px-3 py-1 rounded-md w-full">
+						<span class="font-bold">on <span class="underline">{branch}</span></span>
+						<br />
 						{repoInfo.latest_commit.message}
 					</span>
 					<span class="text-end">
