@@ -3,6 +3,7 @@
 	import { formatDate, getRepoInfo } from '$lib/helper';
 	import githubSvg from '$lib/svgs/github.svg?raw';
 	import { fade } from 'svelte/transition';
+	import externalLinkSvg from '$lib/svgs/external_link.svg?raw';
 
 	export let project_name: string;
 	export let github_project: string;
@@ -24,8 +25,10 @@
 		<section id="{project_name}-links" class="flex gap-2">
 			<a
 				href="https://{project_name}.lucienn.dev"
-				class="btn variant-glass-primary hover:underline w-full">Go To</a
-			>
+				class="btn variant-glass-primary hover:underline w-full"
+				>Go To
+				<div class="scale-[75%]">{@html externalLinkSvg}</div>
+			</a>
 			<a
 				href="https://github.com/lucien-neuhoff/{github_project}"
 				class="btn variant-glass hover:variant-ghost hover:underline p-3 aspect-square"
