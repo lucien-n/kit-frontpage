@@ -9,7 +9,6 @@
 	import SkeletonLink from '$comp/links/SkeletonLink.svelte';
 	import SupabaseLink from '$comp/links/SupabaseLink.svelte';
 	import SveltekitLink from '$comp/links/SveltekitLink.svelte';
-	import githubSvg from '$lib/svgs/github.svg?raw';
 	import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
 
 	export let data: { view_count: number };
