@@ -52,7 +52,7 @@
 							{repoInfo.latest_commit.message}
 						</p>
 						<span class="italic text-sm flex gap-[0.4em]"
-							>- {repoInfo.latest_commit.author}
+							>by {repoInfo.latest_commit.author}
 							<span class="text-[0.3em] self-center flex">⚪</span>
 							{formatDate(new Date(repoInfo.latest_commit.date || 0).getTime())}</span
 						>
