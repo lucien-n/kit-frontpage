@@ -25,7 +25,7 @@
 	/>
 	<meta
 		name="description"
-		content="EN I'm Lucien Neuhoff, a 17yo fullstack webdevelopper. Programming has been my passion for many years."
+		content="EN I'm Lucien Neuhoff, a 17yo fullstack web developper. Programming has been my passion for many years."
 	/>
 	<meta name="author" content="Lucien Neuhoff" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
