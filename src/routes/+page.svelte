@@ -56,6 +56,24 @@
 					</Project>
 				</svelte:fragment>
 			</AccordionItem>
+			<AccordionItem open>
+				<svelte:fragment slot="lead"><p class="text-lg">Frontpage</p></svelte:fragment>
+				<svelte:fragment slot="summary"><p class="opacity-80">Portfolio-ish</p></svelte:fragment>
+				<svelte:fragment slot="content">
+					<Project project_name="frontpage" github_project="kit-frontpage" branch="dev">
+						<svelte:fragment slot="description">
+							<b>Frontpage</b> is the website you'r currently on. <br />
+							It's purpose is to display a few of my projects.
+						</svelte:fragment>
+						<svelte:fragment slot="links">
+							<SveltekitBadge />
+							<SupabaseBadge />
+							<SkeletonBadge />
+							<Badge variant="primary">MVP</Badge>
+						</svelte:fragment>
+					</Project>
+				</svelte:fragment>
+			</AccordionItem>
 			<AccordionItem>
 				<svelte:fragment slot="lead"><p class="text-lg">Seton</p></svelte:fragment>
 				<svelte:fragment slot="summary"><p class="opacity-80">Notes website</p></svelte:fragment>
