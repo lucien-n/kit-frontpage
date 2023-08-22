@@ -3,6 +3,8 @@ import type { RepoInfo } from '$lib/types/repo_info';
 import type { SupabaseClient } from '@supabase/supabase-js';
 import type { RequestHandler } from '@sveltejs/kit';
 import type { Octokit } from 'octokit';
+// 							  h    m    s    ms
+const REPO_FETCH_TIMEOUT_MS = 12 * 60 * 60 * 100;
 
 export const GET: RequestHandler = async ({ locals: { octokit, supabase }, params }) => {
 	try {
@@ -12,11 +14,12 @@ export const GET: RequestHandler = async ({ locals: { octokit, supabase }, param
 
 		let info: RepoInfo | null = null;
 
-		const supa_repo_info = await getFromSupabase(supabase, repo);
-		if (!supa_repo_info) {
+		const should_refetch = await shouldRefetchRepoInfo(supabase, repo);
+
+		if (should_refetch) {
 			const github_repo_info = await getFromGithub(octokit, repo);
 
-			if (github_repo_info) {
+			if (!github_repo_info) {
 				info = {
 					name: repo,
 					latest_commit: {
@@ -25,11 +28,13 @@ export const GET: RequestHandler = async ({ locals: { octokit, supabase }, param
 						date: new Date().toUTCString()
 					}
 				};
-
+			} else {
+				info = github_repo_info;
 				await saveRepoToSupabase(supabase, info);
 			}
 		} else {
-			info = supa_repo_info;
+			const supa_repo_info = await getFromSupabase(supabase, repo);
+			if (supa_repo_info) info = supa_repo_info;
 		}
 
 		return info
@@ -106,8 +111,31 @@ const saveRepoToSupabase = async (supabase: SupabaseClient, repo: RepoInfo): Pro
 			commit_author: repo.latest_commit.author,
 			commit_date: repo.latest_commit.date
 		});
+
 		if (error) throw new Error(error.message);
 	} catch (e) {
 		console.warn(e);
 	}
+};
+
+const shouldRefetchRepoInfo = async (
+	supabase: SupabaseClient,
+	repo_name: string
+): Promise<boolean> => {
+	try {
+		const { data } = await supabase.from('repos').select('created_at').eq('name', repo_name);
+
+		const repo_data = data?.[0];
+
+		if (!repo_data) return true;
+
+		const created_at = new Date(repo_data.created_at);
+
+		return (
+			new Date().getUTCMilliseconds() - created_at.getUTCMilliseconds() > REPO_FETCH_TIMEOUT_MS
+		);
+	} catch (e) {
+		console.warn(e);
+	}
+	return false;
 };

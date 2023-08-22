@@ -2,12 +2,12 @@ import { env } from '$env/dynamic/private';
 import { createSupabaseServerClient } from '@supabase/auth-helpers-sveltekit';
 import type { Handle } from '@sveltejs/kit';
 import { Octokit } from 'octokit';
+import { SUPABASE_SERVICE_ROLE_KEY } from '$env/static/private';
 
 export const handle: Handle = async ({ event, resolve }) => {
 	event.locals.supabase = createSupabaseServerClient({
 		supabaseUrl: 'https://jalxdvhftqvgnwvlryve.supabase.co',
-		supabaseKey:
-			'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImphbHhkdmhmdHF2Z253dmxyeXZlIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODk3MDA5NDMsImV4cCI6MjAwNTI3Njk0M30.CFbLHGORnmuxSXSQXdHSD0Y7rk_mgBfEOpPrJi1JySo',
+		supabaseKey: SUPABASE_SERVICE_ROLE_KEY,
 		event
 	});
 
