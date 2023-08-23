@@ -3,4 +3,4 @@
 	import SkeletonLink from '$comp/links/SkeletonLink.svelte';
 </script>
 
-<Badge variant="tertiary"><SkeletonLink /></Badge>
+<Badge variant="variant-glass-tertiary"><SkeletonLink /></Badge>

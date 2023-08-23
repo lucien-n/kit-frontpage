@@ -3,4 +3,4 @@
 	import SupabaseLink from '$comp/links/SupabaseLink.svelte';
 </script>
 
-<Badge variant="success"><SupabaseLink /></Badge>
+<Badge variant="variant-glass-success"><SupabaseLink /></Badge>

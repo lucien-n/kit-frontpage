@@ -3,4 +3,4 @@
 	import SveltekitLink from '$comp/links/SveltekitLink.svelte';
 </script>
 
-<Badge variant="warning"><SveltekitLink /></Badge>
+<Badge variant="variant-glass-warning"><SveltekitLink /></Badge>

@@ -3,4 +3,4 @@
 	import Badge from '$comp/badges/Badge.svelte';
 </script>
 
-<Badge variant="success"><FirebaseLink /></Badge>
+<Badge variant="variant-glass-success"><FirebaseLink /></Badge>

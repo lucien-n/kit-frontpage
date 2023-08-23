@@ -2,4 +2,4 @@
 	export let variant: string;
 </script>
 
-<div class="badge variant-glass-{variant}"><slot /></div>
+<div class="badge {variant}"><slot /></div>
