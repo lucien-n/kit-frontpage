@@ -117,12 +117,15 @@ const getFromSupabase = async (
 
 const saveRepoToSupabase = async (supabase: SupabaseClient, repo: RepoInfo): Promise<void> => {
 	try {
-		const { error } = await supabase.from('repos').insert({
-			name: repo.name,
-			commit_message: repo.latest_commit.message,
-			commit_author: repo.latest_commit.author,
-			commit_date: repo.latest_commit.date
-		});
+		const { error } = await supabase
+			.from('repos')
+			.update({
+				name: repo.name,
+				commit_message: repo.latest_commit.message,
+				commit_author: repo.latest_commit.author,
+				commit_date: repo.latest_commit.date
+			})
+			.eq('name', repo.name);
 
 		if (error) throw new Error(error.message);
 	} catch (e) {
@@ -135,13 +138,13 @@ const shouldRefetchRepoInfo = async (
 	repo_name: string
 ): Promise<boolean> => {
 	try {
-		const { data } = await supabase.from('repos').select('created_at').eq('name', repo_name);
+		const { data } = await supabase.from('repos').select('updated_at').eq('name', repo_name);
 
 		const repo_data = data?.[0];
 
 		if (!repo_data) return true;
 
-		const created_at = new Date(repo_data.created_at);
+		const created_at = new Date(repo_data.updated_at);
 
 		return (
 			new Date().getUTCMilliseconds() - created_at.getUTCMilliseconds() > REPO_FETCH_TIMEOUT_MS
