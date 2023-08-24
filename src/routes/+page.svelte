@@ -50,7 +50,7 @@
 					</Project>
 				</svelte:fragment>
 			</AccordionItem>
-			<AccordionItem open>
+			<AccordionItem>
 				<svelte:fragment slot="lead"><p class="text-lg">Frontpage</p></svelte:fragment>
 				<svelte:fragment slot="summary"><p class="opacity-80">Portfolio-ish</p></svelte:fragment>
 				<svelte:fragment slot="content">
