@@ -2,6 +2,7 @@
 	import Project from '$comp/Project.svelte';
 	import Badge from '$comp/badges/Badge.svelte';
 	import FirebaseBadge from '$comp/badges/FirebaseBadge.svelte';
+	import ShadcnBadge from '$comp/badges/ShadcnBadge.svelte';
 	import SkeletonBadge from '$comp/badges/SkeletonBadge.svelte';
 	import SupabaseBadge from '$comp/badges/SupabaseBadge.svelte';
 	import SveltekitBadge from '$comp/badges/SveltekitBadge.svelte';
@@ -32,6 +33,27 @@
 	<div class="card p-3 w-full lg:w-4/5 xl:w-2/5 mx-auto h-fit">
 		<Accordion autocollapse>
 			<AccordionItem open>
+				<svelte:fragment slot="lead"><p class="text-lg">LePtitCoin v2</p></svelte:fragment>
+				<svelte:fragment slot="summary"><p class="opacity-80">Listing website</p></svelte:fragment>
+				<svelte:fragment slot="content">
+					<Project project_name="leptitcoin-v2" github_project="skit-leptitcoin-v2" branch="dev">
+						<svelte:fragment slot="description">
+							<b>LePtitCoin v2</b> is a better version of
+							<span class="font-semibold">LePtitCoin</span>.<br />
+							I felt the need to make a completely separate project to rework LePtitCoin.<br />
+							I also switched from <b>Skeleton</b> to <b>svelte-shadcn</b>.<br />
+							<u><SupabaseLink /></u> allows for quick and easy auth and database.
+						</svelte:fragment>
+						<svelte:fragment slot="links">
+							<SveltekitBadge />
+							<SupabaseBadge />
+							<ShadcnBadge />
+							<Badge variant="variant-ghost-success">WIP</Badge>
+						</svelte:fragment>
+					</Project>
+				</svelte:fragment>
+			</AccordionItem>
+			<AccordionItem>
 				<svelte:fragment slot="lead"><p class="text-lg">LePtitCoin</p></svelte:fragment>
 				<svelte:fragment slot="summary"><p class="opacity-80">Listing website</p></svelte:fragment>
 				<svelte:fragment slot="content">
@@ -45,7 +67,7 @@
 							<SveltekitBadge />
 							<SupabaseBadge />
 							<SkeletonBadge />
-							<Badge variant="primary">WIP</Badge>
+							<Badge variant="variant-ghost-warning">Archived</Badge>
 						</svelte:fragment>
 					</Project>
 				</svelte:fragment>
@@ -63,7 +85,7 @@
 							<SveltekitBadge />
 							<SupabaseBadge />
 							<SkeletonBadge />
-							<Badge variant="primary">MVP</Badge>
+							<Badge variant="variant-ghost-primary">MVP</Badge>
 						</svelte:fragment>
 					</Project>
 				</svelte:fragment>
@@ -84,7 +106,7 @@
 							<SveltekitBadge />
 							<FirebaseBadge />
 							<SkeletonBadge />
-							<Badge variant="primary">MVP</Badge>
+							<Badge variant="variant-ghost-primary">MVP</Badge>
 						</svelte:fragment>
 					</Project>
 				</svelte:fragment>
@@ -105,7 +127,7 @@
 						</svelte:fragment>
 						<svelte:fragment slot="links">
 							<SveltekitBadge />
-							<Badge variant="primary">On Hold</Badge>
+							<Badge variant="variant-ghost-primary">On Hold</Badge>
 						</svelte:fragment>
 					</Project>
 				</svelte:fragment>
