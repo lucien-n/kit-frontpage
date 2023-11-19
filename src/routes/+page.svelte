@@ -60,7 +60,7 @@
 					<Project project_name="windows" github_project="kit-windows" branch="main">
 						<svelte:fragment slot="description">
 							<b>Windows</b> is a hobby project. <br />
-							It's meant to "replicate" as desktop os like Windows/MacOS. <br />
+							It's meant to "replicate" a desktop os like Windows/MacOS. <br />
 							It doesn't really serve any purpose for now but I have ideas. <br />
 						</svelte:fragment>
 						<svelte:fragment slot="links">
