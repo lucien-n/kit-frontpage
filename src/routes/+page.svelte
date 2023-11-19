@@ -54,8 +54,8 @@
 				</svelte:fragment>
 			</AccordionItem>
 			<AccordionItem>
-				<svelte:fragment slot="lead"><p class="text-lg">LePtitCoin v2</p></svelte:fragment>
-				<svelte:fragment slot="summary"><p class="opacity-80">Listing website</p></svelte:fragment>
+				<svelte:fragment slot="lead"><p class="text-lg">Windows</p></svelte:fragment>
+				<svelte:fragment slot="summary"><p class="opacity-80">See for yourself</p></svelte:fragment>
 				<svelte:fragment slot="content">
 					<Project project_name="windows" github_project="kit-windows" branch="main">
 						<svelte:fragment slot="description">
