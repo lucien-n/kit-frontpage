@@ -54,6 +54,24 @@
 				</svelte:fragment>
 			</AccordionItem>
 			<AccordionItem>
+				<svelte:fragment slot="lead"><p class="text-lg">LePtitCoin v2</p></svelte:fragment>
+				<svelte:fragment slot="summary"><p class="opacity-80">Listing website</p></svelte:fragment>
+				<svelte:fragment slot="content">
+					<Project project_name="windows" github_project="kit-windows" branch="main">
+						<svelte:fragment slot="description">
+							<b>Windows</b> is a hobby project. <br />
+							It's meant to "replicate" as desktop os like Windows/MacOS. <br />
+							It doesn't really serve any purpose for now but I have ideas. <br />
+						</svelte:fragment>
+						<svelte:fragment slot="links">
+							<SveltekitBadge />
+							<ShadcnBadge />
+							<Badge variant="variant-ghost-success">WIP</Badge>
+						</svelte:fragment>
+					</Project>
+				</svelte:fragment>
+			</AccordionItem>
+			<AccordionItem>
 				<svelte:fragment slot="lead"><p class="text-lg">LePtitCoin</p></svelte:fragment>
 				<svelte:fragment slot="summary"><p class="opacity-80">Listing website</p></svelte:fragment>
 				<svelte:fragment slot="content">
