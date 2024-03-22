@@ -23,7 +23,7 @@
 			<p class="self-center text-muted-foreground">{info.summary}</p>
 		</div>
 	</Accordion.Trigger>
-	<Accordion.Content>
+	<Accordion.Content class="text-base">
 		<svelte:component this={content} />
 		<div class="my-2" />
 		<div class="flex gap-2">

@@ -7,7 +7,11 @@
 	<b>Frontpage</b> is the website you're currently on. <br />
 	It's purpose is to put on display a few of my projects. <br />
 	Checkout
-	<Button variant="link" href="https://github.com/{PUBLIC_GITHUB_OWNER}" class="h-fit px-0 py-0">
+	<Button
+		variant="link"
+		href="https://github.com/{PUBLIC_GITHUB_OWNER}"
+		class="h-fit px-0 py-0 text-base"
+	>
 		my github
 	</Button>
 	for more
