@@ -6,6 +6,7 @@ import Project from './project.svelte';
 type ProjectInfo = {
 	name: string;
 	summary: string;
+	link?: string;
 	github: {
 		repository: string;
 		branch: string;

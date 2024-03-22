@@ -41,6 +41,7 @@
 		"lucide-svelte": "^0.362.0",
 		"mode-watcher": "^0.3.0",
 		"octokit": "^3.1.2",
+		"radix-icons-svelte": "^1.2.1",
 		"svelte-sonner": "^0.3.19",
 		"tailwind-merge": "^2.2.2",
 		"tailwind-variants": "^0.2.1"
