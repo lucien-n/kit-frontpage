@@ -5,6 +5,9 @@
 	import { ExternalLink, GithubLogo } from 'radix-icons-svelte';
 	import { PUBLIC_GITHUB_OWNER } from '$env/static/public';
 	import { CircleBackslash } from 'radix-icons-svelte';
+	import moment from 'moment';
+	import { getRepository } from '$lib/github';
+	import { Skeleton } from '$ui/skeleton';
 
 	export let name: keyof typeof projects;
 
@@ -42,6 +45,19 @@
 			>
 				<GithubLogo size={20} />
 			</Button>
+		</div>
+		<div class="my-2" />
+		<div>
+			<p class="flex gap-1 italic text-muted-foreground">
+				last activity
+				{#await getRepository(info.github.repository, info.github.branch)}
+					<Skeleton class="h-3 w-24 self-center" />
+				{:then repository}
+					{repository?.latestCommit?.date
+						? moment(repository.latestCommit.date).fromNow()
+						: 'unknown'}
+				{/await}
+			</p>
 		</div>
 	</Accordion.Content>
 </Accordion.Item>

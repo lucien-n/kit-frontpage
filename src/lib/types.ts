@@ -6,5 +6,5 @@ export type Commit = {
 
 export type Repository = {
 	name: string;
-	latest_commit: Commit;
+	latestCommit: Commit;
 };

@@ -6,12 +6,12 @@ export const getRepository = async (
 	branch: string
 ): Promise<Repository | null> => {
 	try {
-		const resp = await fetch(`/api/repo-info/${repository}?branch=${branch}`);
+		const resp = await fetch(`/api/repository/${repository}/${branch}`);
 		const data = (await resp.json()) as Repository;
 
 		return data;
 	} catch (e) {
-		toast.error(`An error occured while fetching "${repository}"`);
+		toast.error(`An error occured while fetching "${repository}" ${e}`);
 	}
 
 	return null;
