@@ -1,5 +1,6 @@
 import { Content as FrontpageContent, project as frontpage } from './frontpage';
 import { Content as LeptitcoinV2Content, project as leptitcoinV2 } from './leptitcoinv2';
+import { Content as WindowsContent, project as windows } from './windows';
 import Project from './project.svelte';
 
 type ProjectInfo = {
@@ -16,9 +17,13 @@ const projects = {
 		info: frontpage,
 		content: FrontpageContent
 	},
-	leptitcoin: {
+	leptitcoinV2: {
 		info: leptitcoinV2,
 		content: LeptitcoinV2Content
+	},
+	windows: {
+		info: windows,
+		content: WindowsContent
 	}
 } as const;
 

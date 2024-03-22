@@ -26,7 +26,8 @@
 		<Card.Content>
 			<Accordion.Root value="frontpage">
 				<Project name="frontpage" />
-				<Project name="leptitcoin" />
+				<Project name="leptitcoinV2" />
+				<Project name="windows" />
 			</Accordion.Root>
 		</Card.Content>
 	</Card.Root>
