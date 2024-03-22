@@ -21,10 +21,10 @@
 </svelte:head>
 
 <div
-	class="container relative mx-auto flex h-full w-full flex-col items-center justify-center space-y-5"
+	class="relative mx-auto flex h-full w-full flex-col items-center justify-center space-y-5 sm:container"
 >
 	<Card.Root class="mx-auto h-fit w-full p-3 lg:w-4/5 xl:w-2/5">
-		<Card.Content>
+		<Card.Content class="p-0 py-3 sm:px-5">
 			<Accordion.Root value="frontpage">
 				<Project name="frontpage" />
 				<Project name="leptitcoinV2" />
