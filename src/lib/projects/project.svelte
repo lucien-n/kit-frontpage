@@ -35,7 +35,7 @@
 			{:else}
 				<Button href={info.link ?? '/'} class="group w-full" variant="secondary">
 					<ExternalLink size={20} />
-					<p class="mx-2 group-hover:underline">Go to</p>
+					<p class="mx-2 group-hover:underline">Visit</p>
 				</Button>
 			{/if}
 			<Button
