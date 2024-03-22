@@ -7,7 +7,7 @@
 	$: ({ href, label } = links[link]);
 </script>
 
-<Button {href} variant="link" class="h-fit  p-0 text-xs " target="_blank">
+<Button {href} variant="link" class="h-fit p-0 text-xs underline-offset-2" target="_blank">
 	<ExternalLink size={12} />
 	<u class="ml-1">{label}</u>
 </Button>
