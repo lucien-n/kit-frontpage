@@ -19,7 +19,7 @@
 </div>
 
 {#key ($page.url.href, $mode)}
-	<main in:slide={{ axis: 'y' }}>
+	<main in:slide={{ axis: 'y', duration: 200 }}>
 		<slot />
 	</main>
 {/key}
