@@ -1,9 +1,8 @@
 <script lang="ts">
 	import { PUBLIC_GITHUB_OWNER } from '$env/static/public';
-	import { Project } from '$lib/projects';
-	import * as Accordion from '$ui/accordion';
+	import { Projects } from '$lib/projects';
+
 	import { Button } from '$ui/button';
-	import * as Card from '$ui/card';
 	import { EnvelopeClosed } from 'radix-icons-svelte';
 </script>
 
@@ -23,15 +22,9 @@
 <div
 	class="relative mx-auto flex h-full w-full flex-col items-center justify-center space-y-5 sm:container"
 >
-	<Card.Root class="mx-auto h-fit w-full p-3 lg:w-4/5 xl:w-2/5">
-		<Card.Content class="p-0 py-3 sm:px-5">
-			<Accordion.Root value="frontpage">
-				<Project name="frontpage" />
-				<Project name="leptitcoinV2" />
-				<Project name="windows" />
-			</Accordion.Root>
-		</Card.Content>
-	</Card.Root>
+	<div class="w-full px-2 md:w-3/4 lg:w-1/2">
+		<Projects />
+	</div>
 	<div class="flex flex-col">
 		<p class="text-center italic">
 			There is a plethora of all sorts of projects on

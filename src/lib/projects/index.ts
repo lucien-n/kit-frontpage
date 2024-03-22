@@ -2,6 +2,7 @@ import { Content as FrontpageContent, project as frontpage } from './frontpage';
 import { Content as LeptitcoinV2Content, project as leptitcoinV2 } from './leptitcoinv2';
 import { Content as WindowsContent, project as windows } from './windows';
 import Project from './project.svelte';
+import Projects from './projects.svelte';
 import type { BadgeKey } from '$lib/badge';
 
 type ProjectInfo = {
@@ -30,4 +31,4 @@ const projects = {
 	}
 } as const;
 
-export { Project, projects, type ProjectInfo };
+export { Project, Projects, projects, type ProjectInfo };

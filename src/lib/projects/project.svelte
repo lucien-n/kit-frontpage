@@ -15,7 +15,7 @@
 	const { info, content } = projects[name];
 </script>
 
-<Accordion.Item value={name}>
+<Accordion.Item value={name} class="w-full">
 	<Accordion.Trigger class="hover:no-underline">
 		<div class="flex gap-2">
 			<p class="text-xl font-bold hover:underline">
