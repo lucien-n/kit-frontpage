@@ -21,7 +21,7 @@
 			<p class="text-xl font-bold hover:underline">
 				{info.name}
 			</p>
-			<div class="group flex gap-1 self-center">
+			<div class="group hidden gap-1 self-center sm:flex">
 				{#each info.badges as badge}
 					<Badge {badge} />
 				{/each}
