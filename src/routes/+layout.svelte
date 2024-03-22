@@ -19,7 +19,14 @@
 </div>
 
 {#key ($page.url.href, $mode)}
-	<main in:slide={{ axis: 'y', duration: 200 }}>
-		<slot />
-	</main>
+	<div class="h-full w-full" in:slide={{ axis: 'y', duration: 200 }}>
+		<img
+			src="background.svg"
+			alt="background"
+			class="absolute left-0 top-0 h-full w-full object-cover"
+		/>
+		<main>
+			<slot />
+		</main>
+	</div>
 {/key}
