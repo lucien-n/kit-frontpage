@@ -1,8 +1,10 @@
 <script>
 	import { Toaster } from '$ui/sonner';
-	import { ModeWatcher } from 'mode-watcher';
+	import { ModeWatcher, mode } from 'mode-watcher';
 	import '../app.pcss';
 	import Lightswitch from '$lib/lightswitch.svelte';
+	import { page } from '$app/stores';
+	import { slide } from 'svelte/transition';
 </script>
 
 <svelte:head>
@@ -16,6 +18,8 @@
 	<Lightswitch />
 </div>
 
-<main>
-	<slot />
-</main>
+{#key ($page.url.href, $mode)}
+	<main in:slide={{ axis: 'y' }}>
+		<slot />
+	</main>
+{/key}
