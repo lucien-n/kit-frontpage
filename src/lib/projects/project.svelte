@@ -33,7 +33,7 @@
 		<div class="my-2" />
 		<svelte:component this={content} />
 		<div class="my-2" />
-		<div class="flex gap-2">
+		<div class="mt-5 flex gap-2">
 			{#if !info.link}
 				<Button class="group w-full" variant="secondary" disabled>
 					<CircleBackslash size={20} />
