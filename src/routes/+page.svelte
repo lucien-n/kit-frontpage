@@ -4,6 +4,7 @@
 	import * as Accordion from '$ui/accordion';
 	import { Button } from '$ui/button';
 	import * as Card from '$ui/card';
+	import { EnvelopeClosed } from 'radix-icons-svelte';
 </script>
 
 <svelte:head>
@@ -31,10 +32,16 @@
 			</Accordion.Root>
 		</Card.Content>
 	</Card.Root>
-	<p class="text-center italic">
-		There is a plethora of all sorts of projects on
-		<Button variant="link" href="https://github.com/{PUBLIC_GITHUB_OWNER}" class="px-0 text-base">
-			github
+	<div class="flex flex-col">
+		<p class="text-center italic">
+			There is a plethora of all sorts of projects on
+			<Button variant="link" href="https://github.com/{PUBLIC_GITHUB_OWNER}" class="px-0 text-base">
+				github
+			</Button>
+		</p>
+		<Button variant="link" href="mailto:contact@lucienn.dev" class="flex gap-2 px-1 text-base">
+			<EnvelopeClosed />
+			<p>Contact me</p>
 		</Button>
-	</p>
+	</div>
 </div>
