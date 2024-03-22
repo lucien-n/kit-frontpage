@@ -1,0 +1,2 @@
+# If you would like to report a security issue
+Contact: mailto:contact@lucienn.dev
