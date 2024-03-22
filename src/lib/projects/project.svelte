@@ -14,10 +14,10 @@
 <Accordion.Item value={name}>
 	<Accordion.Trigger>
 		<div class="flex gap-2">
-			<p class="font-bold">
+			<p class="text-xl font-bold">
 				{info.name}
 			</p>
-			<p class="text-muted-foreground">{info.summary}</p>
+			<p class="self-center text-muted-foreground">{info.summary}</p>
 		</div>
 	</Accordion.Trigger>
 	<Accordion.Content>
