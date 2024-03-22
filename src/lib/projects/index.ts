@@ -2,10 +2,12 @@ import { Content as FrontpageContent, project as frontpage } from './frontpage';
 import { Content as LeptitcoinV2Content, project as leptitcoinV2 } from './leptitcoinv2';
 import { Content as WindowsContent, project as windows } from './windows';
 import Project from './project.svelte';
+import type { BadgeKey } from '$lib/badge';
 
 type ProjectInfo = {
 	name: string;
 	summary: string;
+	badges: BadgeKey[];
 	link?: string;
 	github: {
 		repository: string;

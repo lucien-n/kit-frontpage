@@ -8,6 +8,7 @@
 	import moment from 'moment';
 	import { getRepository } from '$lib/github';
 	import { Skeleton } from '$ui/skeleton';
+	import { Badge } from '$lib/badge';
 
 	export let name: keyof typeof projects;
 
@@ -15,15 +16,21 @@
 </script>
 
 <Accordion.Item value={name}>
-	<Accordion.Trigger>
+	<Accordion.Trigger class="hover:no-underline">
 		<div class="flex gap-2">
-			<p class="text-xl font-bold">
+			<p class="text-xl font-bold hover:underline">
 				{info.name}
 			</p>
-			<p class="self-center text-muted-foreground">{info.summary}</p>
+			<div class="group flex gap-1 self-center">
+				{#each info.badges as badge}
+					<Badge {badge} />
+				{/each}
+			</div>
 		</div>
 	</Accordion.Trigger>
 	<Accordion.Content class="text-base">
+		<p class="self-center text-muted-foreground">{info.summary}</p>
+		<div class="my-2" />
 		<svelte:component this={content} />
 		<div class="my-2" />
 		<div class="flex gap-2">

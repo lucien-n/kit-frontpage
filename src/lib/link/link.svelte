@@ -1,8 +1,11 @@
 <script lang="ts">
+	import { Button } from '$ui/button';
 	import { links } from '.';
 
 	export let link: keyof typeof links;
 	$: ({ href, label } = links[link]);
 </script>
 
-<a {href} style="font-weight: 500;" target="_blank"><u>{label}</u></a>
+<Button {href} variant="link" class="h-fit  p-0 text-xs " target="_blank">
+	<u>{label}</u>
+</Button>
