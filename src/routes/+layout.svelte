@@ -9,6 +9,6 @@
 
 <Toaster richColors />
 
-<main class="h-full w-full overflow-hidden">
+<main>
 	<slot />
 </main>

@@ -1,6 +1,9 @@
 <script lang="ts">
 	import { PUBLIC_GITHUB_OWNER } from '$env/static/public';
+	import { Project } from '$lib/projects';
+	import * as Accordion from '$ui/accordion';
 	import { Button } from '$ui/button';
+	import * as Card from '$ui/card';
 </script>
 
 <svelte:head>
@@ -19,7 +22,14 @@
 <div
 	class="container relative mx-auto flex h-full w-full flex-col items-center justify-center space-y-5"
 >
-	<div class="card mx-auto h-fit w-full p-3 lg:w-4/5 xl:w-2/5"></div>
+	<Card.Root class="mx-auto h-fit w-full p-3 lg:w-4/5 xl:w-2/5">
+		<Card.Content>
+			<Accordion.Root value="frontpage">
+				<Project name="frontpage" />
+				<Project name="leptitcoin" />
+			</Accordion.Root>
+		</Card.Content>
+	</Card.Root>
 	<p class="text-center italic">
 		There is a plethora of all sorts of projects on
 		<Button variant="link" href="https://github.com/{PUBLIC_GITHUB_OWNER}" class="px-0 text-base">
