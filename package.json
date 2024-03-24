@@ -36,6 +36,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@vercel/analytics": "^1.2.2",
 		"bits-ui": "^0.20.0",
 		"clsx": "^2.1.0",
 		"lucide-svelte": "^0.362.0",
