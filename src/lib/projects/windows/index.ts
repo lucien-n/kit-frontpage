@@ -5,7 +5,7 @@ const projectInfo: ProjectInfo = {
 	name: 'Windows',
 	summary: 'See for yourself',
 	badges: ['sveltekit', 'shadcn', 'wip'],
-	link: 'https://windows.lucienn.dev',
+	link: 'https://things.lucienn.dev/windows',
 	github: {
 		repository: 'kit-windows',
 		branch: 'main'
