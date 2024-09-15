@@ -5,7 +5,7 @@
 	import type { IconLinkProps } from '$lib/components/types';
 	import { Button } from '&/button';
 	import { Separator } from '&/separator';
-	import { Github, Linkedin } from 'lucide-svelte';
+	import { Github, Linkedin, Briefcase } from 'lucide-svelte';
 
 	const name = 'Lucien';
 	const mail = 'contact@lucienn.dev';
@@ -29,15 +29,18 @@
 <div
 	class="relative mx-auto flex h-full w-full flex-col items-center justify-center space-y-5 sm:container"
 >
-	<div class="flex flex-col sm:flex-row">
+	<div
+		class="flex flex-col rounded-full rounded-r-none border border-primary-foreground bg-black bg-opacity-20 p-2 px-4 backdrop-blur-2xl sm:flex-row"
+	>
 		<div class="self-center">
 			<Avatar />
 		</div>
 		<div class="flex w-64 flex-col sm:ml-7">
 			<h1 class="mt-3 text-4xl">{name}</h1>
-			<div class="flex items-center gap-1">
-				<Button variant="link" class="self-start px-0.5 text-lg" href="mailto:{mail}">
-					{mail}
+			<div class="mt-2">
+				<p class="-mb-1 text-sm italic text-muted-foreground">Working at</p>
+				<Button variant="link" class="self-start px-0.5 pt-0 text-lg" href="https://everping.eu/">
+					Everping
 				</Button>
 			</div>
 			<Separator class="my-2" />
