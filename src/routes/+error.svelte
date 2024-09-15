@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import { Button } from '$ui/button';
-	import { Separator } from '$ui/separator';
-	import { CaretRight } from 'radix-icons-svelte';
+	import { Button } from '&/button';
+	import { Separator } from '&/separator';
+	import { ChevronRight } from 'lucide-svelte';
 </script>
 
 <div class="flex h-full w-full items-center justify-center">
@@ -18,7 +18,7 @@
 				{$page.error?.message}
 			</p>
 			<Button class="p-0 text-base text-muted-foreground" variant="link" href="/">
-				<CaretRight class="mt-1" />
+				<ChevronRight class="mt-1" />
 				Navigate back home
 			</Button>
 		</div>
