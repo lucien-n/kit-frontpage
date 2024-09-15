@@ -1,40 +1,57 @@
 <script lang="ts">
-	import { PUBLIC_GITHUB_OWNER } from '$env/static/public';
-	import { Projects } from '$lib/projects';
+	import Avatar from '$lib/components/avatar.svelte';
+	import IconLink from '$lib/components/icon-link.svelte';
+	import Seo from '$lib/components/seo.svelte';
+	import type { IconLinkProps } from '$lib/components/types';
+	import { Button } from '&/button';
+	import { Separator } from '&/separator';
+	import { Github, Linkedin, Briefcase } from 'lucide-svelte';
 
-	import { Button } from '$ui/button';
-	import { EnvelopeClosed } from 'radix-icons-svelte';
+	const name = 'Lucien';
+	const mail = 'contact@lucienn.dev';
+
+	const links: IconLinkProps[] = [
+		{
+			href: 'https://www.linkedin.com/in/lucien-neuhoff/',
+			label: 'LinkedIn',
+			icon: Linkedin
+		},
+		{
+			href: 'https://github.com/lucien-n',
+			label: 'Github',
+			icon: Github
+		}
+	];
 </script>
 
-<svelte:head>
-	<meta
-		name="keywords"
-		content="lucien, neuhoff, lucien neuhoff, web development, html, css, javascript, typescript, tailwind, nodejs, go, python, supabase, firebase, svelte, sveltekit, shadcn"
-	/>
-	<meta
-		name="description"
-		content="EN I'm Lucien Neuhoff, a 18 years old fullstack web developper. Programming has been my passion for years."
-	/>
-	<meta name="author" content="Lucien Neuhoff" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-</svelte:head>
+<Seo />
 
 <div
 	class="relative mx-auto flex h-full w-full flex-col items-center justify-center space-y-5 sm:container"
 >
-	<div class="w-full px-2 md:w-3/4 lg:w-1/2">
-		<Projects />
-	</div>
-	<div class="flex flex-col">
-		<p class="text-center italic">
-			There is a plethora of all sorts of projects on
-			<Button variant="link" href="https://github.com/{PUBLIC_GITHUB_OWNER}" class="px-0 text-base">
-				github
-			</Button>
-		</p>
-		<Button variant="link" href="mailto:contact@lucienn.dev" class="flex gap-2 px-1 text-base">
-			<EnvelopeClosed />
-			<p>Contact me</p>
-		</Button>
+	<div
+		class="flex flex-col rounded-full rounded-r-none border border-primary-foreground bg-black bg-opacity-20 p-2 px-4 backdrop-blur-2xl sm:flex-row"
+	>
+		<div class="self-center">
+			<Avatar />
+		</div>
+		<div class="flex w-64 flex-col sm:ml-7">
+			<h1 class="mt-3 text-4xl">{name}</h1>
+			<div class="mt-2">
+				<p class="-mb-1 text-sm italic text-muted-foreground">Working at</p>
+				<Button variant="link" class="self-start px-0.5 pt-0 text-lg" href="https://everping.eu/">
+					Everping
+				</Button>
+			</div>
+			<Separator class="my-2" />
+			<div class="flex items-center gap-2">
+				{#each links as link, index}
+					<IconLink {link} />
+					{#if index < links.length - 1}
+						<Separator orientation="vertical" />
+					{/if}
+				{/each}
+			</div>
+		</div>
 	</div>
 </div>
