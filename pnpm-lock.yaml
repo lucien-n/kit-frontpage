@@ -20,9 +20,6 @@ importers:
       lucide-svelte:
         specifier: ^0.362.0
         version: 0.362.0(svelte@4.2.12)
-      svelte-sonner:
-        specifier: ^0.3.19
-        version: 0.3.19(svelte@4.2.12)
       tailwind-merge:
         specifier: ^2.2.2
         version: 2.2.2
@@ -1499,11 +1496,6 @@ packages:
       typescript:
         optional: true
 
-  svelte-sonner@0.3.19:
-    resolution: {integrity: sha512-jpPOgLtHwRaB6Vqo2dUQMv15/yUV/BQWTjKpEqQ11uqRSHKjAYUKZyGrHB2cQsGmyjR0JUzBD58btpgNqINQ/Q==}
-    peerDependencies:
-      svelte: '>=3 <5'
-
   svelte@4.2.12:
     resolution: {integrity: sha512-d8+wsh5TfPwqVzbm4/HCXC783/KPHV60NvwitJnyTA5lWn1elhXMNWhXGCJ7PwPa8qFUnyJNIyuIRt2mT0WMug==}
     engines: {node: '>=16'}
@@ -2941,10 +2933,6 @@ snapshots:
       postcss: 8.4.38
       postcss-load-config: 5.0.3(jiti@1.21.0)(postcss@8.4.38)
       typescript: 5.4.3
-
-  svelte-sonner@0.3.19(svelte@4.2.12):
-    dependencies:
-      svelte: 4.2.12
 
   svelte@4.2.12:
     dependencies:
