@@ -2,6 +2,8 @@
 	import '../app.pcss';
 	import { page } from '$app/stores';
 	import { slide } from 'svelte/transition';
+	/** @type {{children?: import('svelte').Snippet}} */
+	let { children } = $props();
 </script>
 
 <svelte:head>
@@ -16,7 +18,7 @@
 			class="absolute left-0 top-0 h-full w-full object-cover"
 		/>
 		<main>
-			<slot />
+			{@render children?.()}
 		</main>
 	</div>
 {/key}
