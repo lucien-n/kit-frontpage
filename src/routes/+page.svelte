@@ -1,11 +1,8 @@
 <script lang="ts">
-	import Avatar from '$lib/components/avatar.svelte';
-	import IconLink from '$lib/components/icon-link.svelte';
-	import Seo from '$lib/components/seo.svelte';
-	import type { IconLinkProps } from '$lib/components/types';
+	import { type IconLinkProps, Avatar, IconLink, Seo } from '$lib/components';
 	import { Button } from '&/button';
 	import { Separator } from '&/separator';
-	import { Github, Linkedin, Mail } from 'lucide-svelte';
+	import { Github, Globe, Linkedin, Mail } from 'lucide-svelte';
 
 	const links: IconLinkProps[] = [
 		{
@@ -17,6 +14,11 @@
 			href: 'https://github.com/lucien-n',
 			label: 'Github',
 			icon: Github
+		},
+		{
+			href: 'https://bsky.app/lucien-n',
+			label: 'Blue Sky',
+			icon: Globe
 		},
 		{
 			href: 'mailto:contact@lucienn.dev',
