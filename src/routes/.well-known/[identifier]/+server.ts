@@ -2,7 +2,10 @@ import { WK_ATPROTO_DID } from '$env/static/private';
 import { RequestHandler } from '@sveltejs/kit';
 
 const WELL_KNOWN = {
-	'atproto-did': WK_ATPROTO_DID
+	'atproto-did': WK_ATPROTO_DID,
+	'security.txt': `Contact: mailto:contact@lucienn.dev
+Preferred-Languages: en, fr
+Expires: 2026-12-31T00:00:00Z`
 } as const;
 
 export const GET: RequestHandler = (event) => {
